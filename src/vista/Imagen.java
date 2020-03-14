@@ -2,6 +2,10 @@ package vista;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -9,24 +13,26 @@ import javax.swing.JPanel;
  *
  * @author Pablo Jj
  */
-public class Imagen extends JPanel {
-
-    private final ImageIcon img;
-
-    public Imagen(String url_img) {
-        
-        img = new ImageIcon(url_img);
-        
-        this.setSize(img.getIconWidth()/2, img.getIconHeight()/2);
+public class Imagen {
     
+    private String foto;
+    
+    @SuppressWarnings("empty-statement")
+    public Imagen(String nombre_fichero) throws FileNotFoundException, IOException {
+        
+        foto = "";
+        FileReader fr = new FileReader(nombre_fichero);
+        BufferedReader bf = new BufferedReader(fr);
+        
+        String linea;
+        while((linea = bf.readLine()) != null) {
+            foto += linea + "\n";
+        }
+        
     }
-
-    @Override
-    public void paint(Graphics g) {
-        Dimension d = getSize();
-
-        g.drawImage(img.getImage(), 0, 0, d.width, d.height, null);
-        setOpaque(false);
-        super.paintComponent(g);
+    
+    public String getFoto() {
+        return foto;
     }
+    
 }

@@ -2,6 +2,7 @@
 package vista;
 
 import controlador.Controlador;
+import java.io.IOException;
 
 /**
  * - Que avance la figura del ahorcado!
@@ -13,11 +14,12 @@ import controlador.Controlador;
  * @author Pablo Jiménez Jiménez
  */
 public class vistaTextual {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        Controlador cont = new Controlador("PSOE");
 //        cont.juega();
 
-        var vg = new VistaGrafica();
-    
+        //var vg = new VistaGrafica();
+        Imagen i = new Imagen("src/vista/data/6.dat");
+        System.out.println(i.getFoto());
     }
 }
