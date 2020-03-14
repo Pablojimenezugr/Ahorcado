@@ -26,22 +26,26 @@ public class Imagen {
     
     private Imagen() throws FileNotFoundException, IOException {
         
-        foto = new String[6];
+        foto = new String[7];
         
         for(int i=0; i<=6; i++) {
             FileReader fr = new FileReader("src/vista/data/" + i + ".dat");
             BufferedReader bf = new BufferedReader(fr);
-            String linea;
+            String linea="";
+            String all = "";
             while((linea = bf.readLine()) != null) {
-                linea += "\n";
+                all += linea + "\n";
             }
-            foto[i] = linea;
+            foto[i] = all;
         }
     }
     
     public static void createInstance() throws IOException {
-        if(instance == null)
+        if(instance == null) {
             instance = new Imagen();
+            System.err.println("Creando instancia");
+        }
+            
     }
     
     public static Imagen getInstance() {

@@ -18,18 +18,20 @@ import modelo.Juego;
 public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
 
     private Juego juego;
-    private ArrayList<Imagen> figuras; // Imagen es un string practicamente
+    private Imagen foto;
 
     public VistaGrafica() throws IOException {
         
         this.centrarPantalla();
         
         initComponents();
-        panel_foto.disable();
+        //panel_foto.disable();
         this.setTitle("Ahorcado ~ Pablo Jj");
         this.juego = new Juego(pedirPalabra());
         this.cargarTeclado();
-        this.cargarImagenes();
+        Imagen.createInstance();
+        this.foto = Imagen.getInstance();
+        panel_foto.setText(foto.getFoto());
         this.palabra.setText(juego.getPalabra_cifrada());       
         this.setResizable(false);
         this.refrescar();
@@ -59,13 +61,6 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
             panel_teclado.add(btn);
         }
     }
-    
-    private void cargarImagenes() throws IOException {
-        figuras = new ArrayList<>();
-        
-        panel_foto.setText(figuras.get(0).getFoto());
-    }
-
 
     private String pedirPalabra() {
         String seleccion;
@@ -83,7 +78,7 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
     private void refrescar() {
         palabra.setText(juego.getPalabra_cifrada());
         
-
+        panel_foto.setText(foto.getFoto());
         
         panel_foto.repaint();
         this.repaint();       
@@ -123,7 +118,7 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
         panel_teclado.setLayout(new java.awt.GridLayout(3, 10));
 
         panel_foto.setColumns(20);
-        panel_foto.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        panel_foto.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         panel_foto.setRows(5);
         jScrollPane1.setViewportView(panel_foto);
 
@@ -141,13 +136,15 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                             .addComponent(panel_teclado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
-                .addGap(16, 16, 16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(128, 128, 128))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,8 +159,8 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addComponent(panel_teclado, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
