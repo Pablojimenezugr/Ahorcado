@@ -10,29 +10,47 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
- *
+ * @note Imagen sigue el modelo de diseño singleton
  * @author Pablo Jj
  */
 public class Imagen {
     
-    private String foto;
+    private String[] foto;
+    private static int indice;
+    private static Imagen instance;
     
-    @SuppressWarnings("empty-statement")
-    public Imagen(String nombre_fichero) throws FileNotFoundException, IOException {
+    static {
+        instance = null;
+        indice = 0;
+    }
+    
+    private Imagen() throws FileNotFoundException, IOException {
         
-        foto = "";
-        FileReader fr = new FileReader(nombre_fichero);
-        BufferedReader bf = new BufferedReader(fr);
+        foto = new String[6];
         
-        String linea;
-        while((linea = bf.readLine()) != null) {
-            foto += linea + "\n";
+        for(int i=0; i<=6; i++) {
+            FileReader fr = new FileReader("src/vista/data/" + i + ".dat");
+            BufferedReader bf = new BufferedReader(fr);
+            String linea;
+            while((linea = bf.readLine()) != null) {
+                linea += "\n";
+            }
+            foto[i] = linea;
         }
-        
+    }
+    
+    public static void createInstance() throws IOException {
+        if(instance == null)
+            instance = new Imagen();
+    }
+    
+    public static Imagen getInstance() {
+        return instance;
     }
     
     public String getFoto() {
-        return foto;
+        indice++;
+        return foto[indice-1];
     }
     
 }

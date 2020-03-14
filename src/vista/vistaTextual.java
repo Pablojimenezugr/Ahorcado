@@ -18,8 +18,7 @@ public class vistaTextual {
 //        Controlador cont = new Controlador("PSOE");
 //        cont.juega();
 
-        //var vg = new VistaGrafica();
-        Imagen i = new Imagen("src/vista/data/6.dat");
-        System.out.println(i.getFoto());
+        var vg = new VistaGrafica();
+      
     }
 }
