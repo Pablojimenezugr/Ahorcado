@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Juego;
@@ -16,7 +17,7 @@ import modelo.Juego;
 public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
 
     private Juego juego;
-    private ArrayList<Imagen> figuras; // Imagen es un jPanel
+    private ArrayList<ImageIcon> figuras; // Imagen es un jPanel
 
     public VistaGrafica() {
         
@@ -66,10 +67,10 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
         figuras = new ArrayList<>();
 
         for (int i = 1; i <= 6; i++) {
-            figuras.add(new Imagen("/Users/pablojj/Documents/Mis_proyectos/ahorcado_2.0/src/vista/img/" + i + "_foto.png"));
+            figuras.add(new ImageIcon("/Users/pablojj/Documents/Mis_proyectos/ahorcado_2.0/src/vista/img/" + i + "_foto.png"));
         }
-//        panel_foto.add(figuras.get( 3 ));
-
+        
+        panel_foto.setIcon(figuras.get( 0 ));
     }
 
     private String pedirPalabra() {
@@ -91,7 +92,7 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
 
         int i = juego.getIndiceFigura();
         System.out.println("== cambio imagen ==");        
-        panel_foto.add(figuras.get( i ));
+        panel_foto.setIcon(figuras.get( i ));
         panel_foto.repaint();
         this.repaint();       
     }
@@ -108,7 +109,7 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
         palabra = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         panel_teclado = new javax.swing.JPanel();
-        panel_foto = new javax.swing.JPanel();
+        panel_foto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,16 +129,8 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
 
         panel_teclado.setLayout(new java.awt.GridLayout(3, 10));
 
-        javax.swing.GroupLayout panel_fotoLayout = new javax.swing.GroupLayout(panel_foto);
-        panel_foto.setLayout(panel_fotoLayout);
-        panel_fotoLayout.setHorizontalGroup(
-            panel_fotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panel_fotoLayout.setVerticalGroup(
-            panel_fotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 302, Short.MAX_VALUE)
-        );
+        panel_foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/1_foto.png"))); // NOI18N
+        panel_foto.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -153,29 +146,32 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                             .addComponent(panel_teclado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
-                    .addComponent(panel_foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(panel_foto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(palabra))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(palabra))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
                         .addComponent(panel_teclado, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(panel_foto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
+                        .addComponent(panel_foto, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,7 +194,7 @@ public class VistaGrafica extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JButton jButton1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel palabra;
-    private javax.swing.JPanel panel_foto;
+    private javax.swing.JLabel panel_foto;
     private javax.swing.JPanel panel_teclado;
     // End of variables declaration//GEN-END:variables
 
