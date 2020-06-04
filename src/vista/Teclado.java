@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JButton;
@@ -25,7 +26,9 @@ public class Teclado extends javax.swing.JPanel {
         ));
         
         letras.forEach((l) -> {
-            add(new JButton(l.toString()));
+            var b = new JButton(l.toString());
+            b.setFont(new Font("Arial", 0, 30));
+            add(b);
         });
 
         System.out.println("creado");

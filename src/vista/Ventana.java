@@ -16,7 +16,7 @@ public class Ventana extends javax.swing.JFrame {
      */
     public Ventana() {
         initComponents();
-        
+        setTitle("Ahorcado ~ Jj");
         setResizable(false);
     }
 
@@ -41,7 +41,8 @@ public class Ventana extends javax.swing.JFrame {
         jLabel1.setText("_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
 
-        jButton1.setText("jButton1");
+        jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton1.setText("NUEVO JUEGO");
 
         javax.swing.GroupLayout imagen1Layout = new javax.swing.GroupLayout(imagen1);
         imagen1.setLayout(imagen1Layout);
@@ -65,7 +66,7 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                     .addComponent(imagen1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
