@@ -1,16 +1,30 @@
 package vista;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author pablo
  */
 public class Imagen extends javax.swing.JPanel {
 
+    private List rutasImg;
+
     public Imagen() {
         initComponents();
-        
+
+        rutasImg = new ArrayList<String>();
+        for (int i = 0; i < 6; i++) {
+            rutasImg.add("/vista/data/" + i + ".png");
+        }       
     }
-    
+
+    public void ponerImagen(int i) {
+        System.out.println("pedido indice "+ i + " de "+rutasImg.size());
+        jLabel1.setIcon(new ImageIcon(getClass().getResource( rutasImg.get(i).toString() )));
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
