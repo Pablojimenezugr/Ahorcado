@@ -20,18 +20,22 @@ public class Contenedor {
     public Contenedor() throws FileNotFoundException {
         spanish = new HashSet<String>();
         english = new HashSet<String>();
-        var f = new File("src/dico/espaniol.txt");
-        
-        var br = new Scanner(f);
+        var fe = new File("src/dico/espaniol.txt");
+        var fi = new File("src/dico/ingles.txt");
+        var br = new Scanner(fe);
         String l = null;
         while(br.hasNextLine()) {
             l = br.nextLine();
             spanish.add(l);
         }
+        br.close();
         
-        for(var e : spanish) {
-            System.out.println(e);
+        br = new Scanner(fi);
+        while(br.hasNextLine()) {
+            l = br.nextLine();
+            english.add(l);
         }
+        br.close();
         
     }
     
