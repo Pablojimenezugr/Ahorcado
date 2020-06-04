@@ -13,12 +13,3 @@ import java.io.IOException;
  *
  * @author Pablo Jiménez Jiménez
  */
-public class vistaTextual {
-    public static void main(String[] args) throws IOException {
-//        Controlador cont = new Controlador("PSOE");
-//        cont.juega();
-
-        var vg = new VistaGrafica();
-      
-    }
-}
