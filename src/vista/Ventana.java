@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Juego;
@@ -23,23 +25,33 @@ public class Ventana extends javax.swing.JFrame {
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
 
+        nuevaPartida("PALABRA SECRETA");
+
+    }
+
+    private void nuevaPartida(String sms) {
         String seleccion;
         do {
             seleccion = JOptionPane.showInputDialog(
                     this,
                     "Introduce palabra a adivinar",
-                    "PALABRA SECRETA",
+                    sms,
                     JOptionPane.QUESTION_MESSAGE);
         } while (seleccion.contains(" ") || seleccion.isBlank() || seleccion.isEmpty());
 
         this.juego = new Juego(seleccion);
-
         refrescarPalabraLabel();
-
     }
 
     private void refrescarPalabraLabel() {
         this.palabra.setText(juego.getPalabra_cifrada());
+
+        repaint();
+        revalidate();
+    }
+
+    public void matarVentana() {
+        System.exit(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -134,12 +146,15 @@ public class Ventana extends javax.swing.JFrame {
                     pulsado.setBackground(Color.RED);
                     System.out.println("indice figura: " + juego.getIndiceFigura());
                     imagen2.ponerImagen(juego.getIndiceFigura());
+                    imagen2.setVisible(true);
+                    imagen2.repaint();
                 }
                 refrescarPalabraLabel();
                 if (juego.finalJuego()) {
                     String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido";
 
                     JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
+                    nuevaPartida("Introduce nueva palabra");
                 }
             }
 

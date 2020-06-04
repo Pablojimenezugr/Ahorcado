@@ -16,15 +16,16 @@ public class Imagen extends javax.swing.JPanel {
         initComponents();
 
         rutasImg = new ArrayList<String>();
-        for (int i = 0; i < 6; i++) {
-            rutasImg.add("/vista/data/" + i + ".png");
+        for (int i = 1; i <= 7; i++) {
+            rutasImg.add("/vista/data/" + i + ".jpg");
         }       
+        jLabel1.setIcon(new ImageIcon(getClass().getResource( rutasImg.get(0).toString() )));
     }
 
     public void ponerImagen(int i) {
-        System.out.println("pedido indice "+ i + " de "+rutasImg.size());
         jLabel1.setIcon(new ImageIcon(getClass().getResource( rutasImg.get(i).toString() )));
     }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -34,7 +35,7 @@ public class Imagen extends javax.swing.JPanel {
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/data/1.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/data/1.jpg"))); // NOI18N
         jLabel1.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
