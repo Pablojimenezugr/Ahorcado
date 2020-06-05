@@ -178,7 +178,7 @@ public class Ventana extends javax.swing.JFrame {
                 }
                 refrescarPalabraLabel();
                 if (juego.finalJuego()) {
-                    String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido";
+                    String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido!\nLa palabra era: " + juego.getPalabra();
 
                     JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
                     try {
