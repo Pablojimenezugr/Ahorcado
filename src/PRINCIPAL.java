@@ -9,7 +9,6 @@ import vista.Ventana;
  */
 public class PRINCIPAL {
     public static void main(String[] args) throws FileNotFoundException {
-        
         var c = new Ventana();
     }
 }

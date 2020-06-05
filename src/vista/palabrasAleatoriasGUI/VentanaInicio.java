@@ -44,7 +44,7 @@ public class VentanaInicio extends javax.swing.JDialog {
         setVisible(true);
         setResizable(false);
 
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
     }
 
     @SuppressWarnings("unchecked")
