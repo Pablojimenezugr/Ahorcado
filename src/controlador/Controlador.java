@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.Scanner;
 import modelo.Juego;
+import vista.palabrasAleatoriasGUI.VentanaPrincipal;
 
 /**
  *
@@ -11,6 +12,7 @@ public class Controlador {
     
     private Juego juego;
     private static Scanner in;
+    private VentanaPrincipal arrancar;
     
     public Controlador(Juego j) {
         juego = j;
