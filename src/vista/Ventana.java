@@ -6,11 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Juego;
+import vista.palabrasAleatoriasGUI.VentanaPrincipal;
 
 /**
  *
@@ -19,28 +18,24 @@ import modelo.Juego;
 public class Ventana extends javax.swing.JFrame {
 
     private Juego juego;
-
+    private VentanaPrincipal inicio;
+    
     public Ventana() {
+        inicio = new VentanaPrincipal(this, true);
+        inicio.setVisible(true);
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
 
-        nuevaPartida("PALABRA SECRETA");
-
+        nuevaPartida();
+        //inicio = new VentanaPrincipal(this, true);
+        setVisible(true);
     }
 
-    private void nuevaPartida(String sms) {
-        String seleccion;
-        do {
-            seleccion = JOptionPane.showInputDialog(
-                    this,
-                    "Introduce palabra a adivinar",
-                    sms,
-                    JOptionPane.QUESTION_MESSAGE);
-        } while (seleccion.contains(" ") || seleccion.isBlank() || seleccion.isEmpty());
-
-        this.juego = new Juego(seleccion);
-        refrescarPalabraLabel();
+    private String nuevaPartida() {
+        
+        //refrescarPalabraLabel();
+        return inicio.obtenerPalabraParaJuego();
     }
 
     private void refrescarPalabraLabel() {
@@ -117,7 +112,7 @@ public class Ventana extends javax.swing.JFrame {
                     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G',
                     'H', 'J', 'K', 'L', 'Ñ', 'ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '-', '*'
             ));
-            System.out.println("dqwd");
+            
             letras.forEach((l) -> {
                 var b = new JButton(l.toString());
                 b.setFont(new Font("Arial", 0, 30));
@@ -125,7 +120,6 @@ public class Ventana extends javax.swing.JFrame {
                 add(b);
             });
 
-            System.out.println("creado");
             this.setVisible(true);
             repaint();
             revalidate();
@@ -154,7 +148,7 @@ public class Ventana extends javax.swing.JFrame {
                     String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido";
 
                     JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
-                    nuevaPartida("Introduce nueva palabra");
+                    nuevaPartida();
                 }
             }
 
@@ -169,38 +163,6 @@ public class Ventana extends javax.swing.JFrame {
 
         // Variables declaration - do not modify                     
         // End of variables declaration                   
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Ventana().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,8 +5,9 @@
         <group>
             <file>file:/home/pablo/proyectos/Ahorcado/src/vista/Ventana.java</file>
             <file>file:/home/pablo/proyectos/Ahorcado/src/controlador/Controlador.java</file>
+            <file>file:/home/pablo/proyectos/Ahorcado/src/vista/palabrasAleatoriasGUI/VentanaPrincipal.java</file>
             <file>file:/home/pablo/proyectos/Ahorcado/src/vista/Imagen.java</file>
-            <file>file:/home/pablo/proyectos/Ahorcado/src/vista/palabrasAleatoriasGUI/VentanaAleatoria.java</file>
+            <file>file:/home/pablo/proyectos/Ahorcado/src/vista/palabrasAleatoriasGUI/VentanaPrincipal.xml</file>
         </group>
     </open-files>
 </project-private>

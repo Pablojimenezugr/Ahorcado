@@ -2,6 +2,7 @@ package controlador;
 
 import java.util.Scanner;
 import modelo.Juego;
+import vista.Ventana;
 import vista.palabrasAleatoriasGUI.VentanaPrincipal;
 
 /**
@@ -10,36 +11,15 @@ import vista.palabrasAleatoriasGUI.VentanaPrincipal;
  */
 public class Controlador {
     
-    private Juego juego;
-    private static Scanner in;
-    private VentanaPrincipal arrancar;
+    private Ventana juegoGrafico;
     
-    public Controlador(Juego j) {
-        juego = j;
-        in = new Scanner(System.in);
+    public Controlador() {
+        juegoGrafico = new Ventana();
     }
+
     
-    public void juega_terminal() {
+    public void juega() {
         
-        while(!juego.finalJuego()) {
-            
-            System.out.println(juego.getPosibles());
-            
-            System.out.println(juego.getPalabra_cifrada());
-            
-            System.out.print("~> ");
-            char letra = in.nextLine().charAt(0);
-            
-            juego.sigPaso(letra);
-            
-            System.out.println( juego.getFigura() );
-            
-            
-        }
-        
-       
         
     }
-    
-    
 }
