@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Juego;
@@ -21,23 +24,26 @@ public class Ventana extends javax.swing.JFrame {
     private Juego juego;
     private VentanaInicio inicio;
     private String p = null;
-    
-    public Ventana() {
+
+    public Ventana() throws FileNotFoundException {
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
-        
+
         setLocationRelativeTo(null);
         nuevoJuego();
     }
-    
-    public void nuevoJuego() {
+
+    public void nuevoJuego() throws FileNotFoundException {
         inicio = new VentanaInicio(this, true);
         juego = new Juego(inicio.obtenerPalabraParaJuego());
         refrescarPalabraLabel();
         this.setVisible(true);
+        teclado1.teclas.forEach((t) -> {
+            t.setBackground(null);
+        });
     }
-    
+
     public void setJuego(Juego j) {
         juego = j;
         refrescarPalabraLabel();
@@ -114,16 +120,17 @@ public class Ventana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        nuevoJuego();
-        teclado1.teclas.forEach((t) -> {
-                t.setBackground(null);
-            });
+        try {
+            nuevoJuego();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private class Teclado extends javax.swing.JPanel {
 
         private List<JButton> teclas;
-        
+
         public Teclado() {
             initComponents();
             teclas = new ArrayList<>();
@@ -131,7 +138,7 @@ public class Ventana extends javax.swing.JFrame {
                     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G',
                     'H', 'J', 'K', 'L', 'Ñ', 'ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '-', '*'
             ));
-            
+
             letras.forEach((l) -> {
                 var b = new JButton(l.toString());
                 b.setFont(new Font("Arial", 0, 30));
@@ -144,7 +151,7 @@ public class Ventana extends javax.swing.JFrame {
             repaint();
             revalidate();
         }
-        
+
         public void resetTeclas() {
             teclas.forEach((t) -> {
                 t.setBackground(null);
@@ -174,8 +181,11 @@ public class Ventana extends javax.swing.JFrame {
                     String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido";
 
                     JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
-                    nuevoJuego();
-                    resetTeclas();
+                    try {
+                        nuevoJuego();
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
 
