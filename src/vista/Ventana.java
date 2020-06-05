@@ -6,10 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import modelo.Juego;
-import vista.palabrasAleatoriasGUI.VentanaPrincipal;
+import vista.palabrasAleatoriasGUI.VentanaInicio;
 
 /**
  *
@@ -18,24 +19,28 @@ import vista.palabrasAleatoriasGUI.VentanaPrincipal;
 public class Ventana extends javax.swing.JFrame {
 
     private Juego juego;
-    private VentanaPrincipal inicio;
+    private VentanaInicio inicio;
+    private String p = null;
     
     public Ventana() {
-        inicio = new VentanaPrincipal(this, true);
-        inicio.setVisible(true);
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
-
-        nuevaPartida();
-        //inicio = new VentanaPrincipal(this, true);
-        setVisible(true);
-    }
-
-    private String nuevaPartida() {
         
-        //refrescarPalabraLabel();
-        return inicio.obtenerPalabraParaJuego();
+        setLocationRelativeTo(null);
+        nuevoJuego();
+    }
+    
+    public void nuevoJuego() {
+        inicio = new VentanaInicio(this, true);
+        juego = new Juego(inicio.obtenerPalabraParaJuego());
+        refrescarPalabraLabel();
+        this.setVisible(true);
+    }
+    
+    public void setJuego(Juego j) {
+        juego = j;
+        refrescarPalabraLabel();
     }
 
     private void refrescarPalabraLabel() {
@@ -67,6 +72,11 @@ public class Ventana extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton1.setText("NUEVO JUEGO");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,19 +105,28 @@ public class Ventana extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(teclado1, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
-                    .addComponent(imagen2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(imagen2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(teclado1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        nuevoJuego();
+        teclado1.teclas.forEach((t) -> {
+                t.setBackground(null);
+            });
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private class Teclado extends javax.swing.JPanel {
 
+        private List<JButton> teclas;
+        
         public Teclado() {
             initComponents();
-
+            teclas = new ArrayList<>();
             var letras = new ArrayList<>(Arrays.asList(
                     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G',
                     'H', 'J', 'K', 'L', 'Ñ', 'ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '-', '*'
@@ -117,12 +136,19 @@ public class Ventana extends javax.swing.JFrame {
                 var b = new JButton(l.toString());
                 b.setFont(new Font("Arial", 0, 30));
                 b.addActionListener(new EventoTecladoVirtual());
+                teclas.add(b);
                 add(b);
             });
 
             this.setVisible(true);
             repaint();
             revalidate();
+        }
+        
+        public void resetTeclas() {
+            teclas.forEach((t) -> {
+                t.setBackground(null);
+            });
         }
 
         private class EventoTecladoVirtual implements ActionListener {
@@ -148,7 +174,8 @@ public class Ventana extends javax.swing.JFrame {
                     String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido";
 
                     JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
-                    nuevaPartida();
+                    nuevoJuego();
+                    resetTeclas();
                 }
             }
 

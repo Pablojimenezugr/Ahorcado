@@ -1,11 +1,6 @@
 
-import controlador.Controlador;
+import vista.Ventana;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -13,6 +8,7 @@ import controlador.Controlador;
  */
 public class PRINCIPAL {
     public static void main(String[] args) {
-        new Controlador();
+        
+        var c = new Ventana();
     }
 }

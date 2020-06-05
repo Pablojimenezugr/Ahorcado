@@ -1,9 +1,8 @@
 package controlador;
 
-import java.util.Scanner;
 import modelo.Juego;
 import vista.Ventana;
-import vista.palabrasAleatoriasGUI.VentanaPrincipal;
+import vista.palabrasAleatoriasGUI.VentanaInicio;
 
 /**
  *
@@ -12,14 +11,22 @@ import vista.palabrasAleatoriasGUI.VentanaPrincipal;
 public class Controlador {
     
     private Ventana juegoGrafico;
+    private VentanaInicio inicio;
     
     public Controlador() {
-        juegoGrafico = new Ventana();
+        
+        
     }
 
     
-    public void juega() {
+    public boolean partida() {
+        juegoGrafico = new Ventana();
+        inicio = new VentanaInicio(juegoGrafico, true);
         
+        var j = new Juego(inicio.obtenerPalabraParaJuego());
+        juegoGrafico.setJuego(j);
         
+        juegoGrafico.setVisible(true);
+        return false;
     }
 }

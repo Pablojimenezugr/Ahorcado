@@ -53,8 +53,8 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="imagen2" max="32767" attributes="0"/>
                   <Component id="teclado1" max="32767" attributes="0"/>
-                  <Component id="imagen2" pref="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
@@ -83,6 +83,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="NUEVO JUEGO"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="vista.Imagen" name="imagen2">
     </Component>
