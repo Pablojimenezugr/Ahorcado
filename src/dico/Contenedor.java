@@ -4,43 +4,60 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
  * @author pablo
  */
 public class Contenedor {
-    
+
     private Set spanish;
-    private Set english;
-    
+    private static Random rdn;
+    private List aleatorios;
+
     public Contenedor() throws FileNotFoundException {
         spanish = new HashSet<String>();
-        english = new HashSet<String>();
+        rdn = new Random();
+        aleatorios = new ArrayList<Integer>();
         var fe = new File("src/dico/espaniol.txt");
-        var fi = new File("src/dico/ingles.txt");
+
         var br = new Scanner(fe);
         String l = null;
-        while(br.hasNextLine()) {
+        while (br.hasNextLine()) {
             l = br.nextLine();
             spanish.add(l);
         }
         br.close();
-        
-        br = new Scanner(fi);
-        while(br.hasNextLine()) {
-            l = br.nextLine();
-            english.add(l);
-        }
-        br.close();
-        
+
     }
-    
-    public static void main(String[] args) throws FileNotFoundException {
-        new Contenedor();
+
+    public String[] getSpanish() {
+        return Arrays.copyOf(spanish.toArray(), spanish.toArray().length, String[].class);
     }
-    
+
+    public Set getSetSpanish() {
+        return spanish;
+    }
+
+    public String palabraAleatoria() {
+        Integer ale = null;
+        do {
+            ale = rdn.nextInt(spanish.size());
+        } while (aleatorios.contains(ale));
+        aleatorios.add(ale);
+        
+        String[] claves = Arrays.copyOf(spanish.toArray(), spanish.toArray().length, String[].class);
+        
+        return claves[ale];
+    }
 }

@@ -4,7 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/home/pablo/proyectos/Ahorcado/src/vista/Ventana.java</file>
+            <file>file:/home/pablo/proyectos/Ahorcado/src/vista/palabrasAleatoriasGUI/PalabraAleatoria.java</file>
+            <file>file:/home/pablo/proyectos/Ahorcado/src/vista/palabrasAleatoriasGUI/VentanaPrincipal.java</file>
             <file>file:/home/pablo/proyectos/Ahorcado/src/vista/Imagen.java</file>
+            <file>file:/home/pablo/proyectos/Ahorcado/src/dico/Contenedor.java</file>
         </group>
     </open-files>
 </project-private>
