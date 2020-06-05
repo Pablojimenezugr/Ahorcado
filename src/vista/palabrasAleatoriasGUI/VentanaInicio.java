@@ -151,7 +151,12 @@ public class VentanaInicio extends javax.swing.JDialog {
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+           jTextField1.setText("********");
+        try {
+               PalabraAleatoria palabraAleatoria = new PalabraAleatoria(new Contenedor());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(VentanaInicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

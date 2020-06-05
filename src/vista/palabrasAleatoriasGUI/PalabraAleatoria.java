@@ -3,20 +3,20 @@ package vista.palabrasAleatoriasGUI;
 import dico.Contenedor;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pablo
  */
-public class PalabraAleatoria extends javax.swing.JDialog {
+public class PalabraAleatoria extends JFrame {
 
     private Contenedor dico;
     private ModeloOriginalLista modeloOriginal;
     private DefaultListModel modeloBusqueda = null;
 
-    public PalabraAleatoria(java.awt.Frame parent, boolean modal, Contenedor c) {
-        super(parent, modal);
+    public PalabraAleatoria(Contenedor c) {
         initComponents();
         dico = c;
 
@@ -25,6 +25,10 @@ public class PalabraAleatoria extends javax.swing.JDialog {
         lista.setModel(modeloOriginal);
         registros.setText(dico.getSetSpanish().size() + " registros cargados.");
         ale.transferFocus();
+        setVisible(true);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     private class ModeloOriginalLista extends AbstractListModel<String> {
