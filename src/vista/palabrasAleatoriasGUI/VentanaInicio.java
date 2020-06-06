@@ -6,6 +6,7 @@
 package vista.palabrasAleatoriasGUI;
 
 import dico.Contenedor;
+import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,9 +32,9 @@ public class VentanaInicio extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         dico = new Contenedor();
-        
+
         setTitle("CONFIGURANDO JUGADA");
-        
+        jTextField1.requestFocus();
         setLocationRelativeTo(null);
         jTextField2.setText("Buscar palabra...");
         ale.setSelected(true);
@@ -66,6 +67,11 @@ public class VentanaInicio extends javax.swing.JDialog {
         jTextField1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 255));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Introduce una palabra:");
 
@@ -74,12 +80,20 @@ public class VentanaInicio extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        lista.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                listaKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(lista);
 
         jTextField2.setText("jTextField2");
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
             }
         });
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -211,9 +225,9 @@ public class VentanaInicio extends javax.swing.JDialog {
                 this.dispose();
                 System.out.println("hehco el dispose");
             }
-            
+
             this.dispose();
-            
+
         } else if (jTextField1.getText().equals("") && !lista.isSelectionEmpty()) {
             palabra = lista.getSelectedValue();
             this.dispose();
@@ -224,8 +238,9 @@ public class VentanaInicio extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(ale.isSelected()) {
+        if (ale.isSelected()) {
             palabra = dico.palabraAleatoria();
             JOptionPane.showMessageDialog(rootPane, palabra, "Palabra seleccionada", JOptionPane.INFORMATION_MESSAGE);
         } else {
@@ -233,6 +248,20 @@ public class VentanaInicio extends javax.swing.JDialog {
         }
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+        jTextField2.setText("Buscar palabra...");
+    }//GEN-LAST:event_jTextField2FocusLost
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+            jButton5ActionPerformed(null);
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void listaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            jButton5ActionPerformed(null);
+    }//GEN-LAST:event_listaKeyPressed
 
     public String obtenerPalabraParaJuego() {
         return palabra;

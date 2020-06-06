@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Juego;
 import vista.palabrasAleatoriasGUI.VentanaInicio;
@@ -32,16 +33,21 @@ public class Ventana extends javax.swing.JFrame {
 
         setLocationRelativeTo(null);
         nuevoJuego();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void nuevoJuego() throws FileNotFoundException {
-        inicio = new VentanaInicio(this, true);
-        juego = new Juego(inicio.obtenerPalabraParaJuego());
-        refrescarPalabraLabel();
-        this.setVisible(true);
-        teclado1.teclas.forEach((t) -> {
-            t.setBackground(null);
-        });
+        try {
+            inicio = new VentanaInicio(this, true);
+            juego = new Juego(inicio.obtenerPalabraParaJuego());
+            refrescarPalabraLabel();
+            this.setVisible(true);
+            teclado1.teclas.forEach((t) -> {
+                t.setBackground(null);
+            });
+        } catch (NullPointerException e) {
+            System.exit(0);
+        }
     }
 
     public void setJuego(Juego j) {
