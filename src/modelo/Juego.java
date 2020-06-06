@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -58,7 +60,7 @@ public class Juego {
     }
 
     private boolean esVocal(char c) {
-        var vocales = new ArrayList<>(Arrays.asList(
+        List vocales = new ArrayList<>(Arrays.asList(
                 'A', 'E', 'I', 'O', 'U'
         ));
 
@@ -90,13 +92,13 @@ public class Juego {
     }
 
     private char mod(char c) {
-        var equivalencia = new HashMap<Character, Character>();
+        Map equivalencia = new HashMap<Character, Character>();
         equivalencia.put('A', 'Á');
         equivalencia.put('E', 'É');
         equivalencia.put('I', 'Í');
         equivalencia.put('O', 'Ó');
         equivalencia.put('U', 'Ú');
-        return equivalencia.get(c);
+        return (char) equivalencia.get(c);
     }
 
     public boolean finalJuego() {

@@ -150,13 +150,13 @@ public class Ventana extends javax.swing.JFrame {
         public Teclado() {
             initComponents();
             teclas = new ArrayList<>();
-            var letras = new ArrayList<>(Arrays.asList(
+            List letras = new ArrayList<>(Arrays.asList(
                     'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G',
                     'H', 'J', 'K', 'L', 'Ñ', 'ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '-', '*'
             ));
 
             letras.forEach((l) -> {
-                var b = new JButton(l.toString());
+                JButton b = new JButton(l.toString());
                 b.setFont(new Font("Arial", 0, 30));
                 b.addActionListener(new EventoTecladoVirtual());
                 teclas.add(b);
@@ -179,7 +179,7 @@ public class Ventana extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                var correcto = juego.sigPaso(e.getActionCommand().toCharArray()[0]);
+                boolean correcto = juego.sigPaso(e.getActionCommand().toCharArray()[0]);
 
                 if (correcto) {
                     JButton pulsado = (JButton) e.getSource();

@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Set;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.Icon;
@@ -178,7 +179,7 @@ public class VentanaInicio extends javax.swing.JDialog {
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         int c = 0;
         String txt = jTextField2.getText();
-        var a = dico.getSetSpanish();
+        Set a = dico.getSetSpanish();
         if (txt.trim().length() > 0) {
 
             modeloBusqueda = new DefaultListModel();
@@ -209,7 +210,7 @@ public class VentanaInicio extends javax.swing.JDialog {
 
         if (!jTextField1.getText().equals("")) {
             palabra = jTextField1.getText();
-            boolean c = palabra.contains(" ") || palabra.isBlank() || palabra.isEmpty();
+            boolean c = palabra.contains(" ") || palabra.isEmpty() || palabra.isEmpty();
             int t = palabra.toCharArray().length;
 
             if (t >= 18) {

@@ -7,11 +7,11 @@ import vista.Ventana;
 
 /**
  *
- * @author pablo
+ * @author Pablo Jiménez
  */
 public class PRINCIPAL {
     public static void main(String[] args) throws FileNotFoundException, IOException, URISyntaxException {
-        var c = new Ventana();
+        Ventana c = new Ventana();
         
     }
 }
