@@ -1,4 +1,4 @@
-package vista.palabrasAleatoriasGUI;
+package vista;
 
 import dico.Contenedor;
 import java.awt.event.KeyEvent;
@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -219,13 +221,15 @@ public class VentanaInicio extends javax.swing.JDialog {
                 System.out.println("hehco el dispose");
             }
 
-            this.dispose();
-
         } else if (jTextField1.getText().equals("") && !lista.isSelectionEmpty()) {
             palabra = lista.getSelectedValue();
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Debes escribir o seleccionar una palabra", "Error palabra secreta", JOptionPane.WARNING_MESSAGE);
+
+            ImageIcon icono = new ImageIcon(getClass().getResource("data/warning.png"));
+            JOptionPane.showMessageDialog(rootPane, "Debes escribir o seleccionar una palabra",
+                    "Error palabra secreta", JOptionPane.WARNING_MESSAGE, icono);
+            
         }
 
 

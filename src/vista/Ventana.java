@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -12,11 +13,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.Juego;
-import vista.palabrasAleatoriasGUI.VentanaInicio;
 
 /**
  *
@@ -32,7 +34,9 @@ public class Ventana extends javax.swing.JFrame {
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
-
+        
+        ImageIcon icono = new ImageIcon(getClass().getResource("data/icon.png"));
+        setIconImage(icono.getImage());
         setLocationRelativeTo(null);
         nuevoJuego();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -136,7 +140,7 @@ public class Ventana extends javax.swing.JFrame {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private class Teclado extends javax.swing.JPanel {
@@ -193,9 +197,17 @@ public class Ventana extends javax.swing.JFrame {
                 }
                 refrescarPalabraLabel();
                 if (juego.finalJuego()) {
-                    String sms = (juego.ganador()) ? "¡HAS GANADO!" : "Has perdido!\nLa palabra era: " + juego.getPalabra();
+                    Icon icono;
+                    String sms;
+                    if (juego.ganador()) {
+                        sms = "¡HAS GANADO!";
+                        icono = new ImageIcon(getClass().getResource("data/ganador.png"));
+                    } else {
+                        sms = "Has perdido!\nLa palabra era: " + juego.getPalabra();
+                        icono = new ImageIcon(getClass().getResource("data/perdedor.png"));
+                    }
 
-                    JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1);
+                    JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1, icono);
                     try {
                         nuevoJuego();
                     } catch (FileNotFoundException ex) {
@@ -204,7 +216,7 @@ public class Ventana extends javax.swing.JFrame {
                         Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (URISyntaxException ex) {
                         Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-                    } 
+                    }
                 }
             }
 
