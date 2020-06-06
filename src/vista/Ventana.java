@@ -180,10 +180,13 @@ public class Ventana extends javax.swing.JFrame {
                 if (correcto) {
                     JButton pulsado = (JButton) e.getSource();
                     pulsado.setBackground(Color.GREEN);
+                    pulsado.setOpaque(true);
+                    pulsado.setBorderPainted(false);
                 } else {
                     JButton pulsado = (JButton) e.getSource();
                     pulsado.setBackground(Color.RED);
-                    System.out.println("indice figura: " + juego.getIndiceFigura());
+                    pulsado.setOpaque(true);
+                    pulsado.setBorderPainted(false);
                     imagen2.ponerImagen(juego.getIndiceFigura());
                     imagen2.setVisible(true);
                     imagen2.repaint();
