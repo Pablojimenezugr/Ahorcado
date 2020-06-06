@@ -3,6 +3,8 @@ package vista.palabrasAleatoriasGUI;
 import dico.Contenedor;
 import java.awt.event.KeyEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -19,7 +21,7 @@ public class VentanaInicio extends javax.swing.JDialog {
     private ModeloOriginalLista modeloOriginal;
     private DefaultListModel modeloBusqueda = null;
 
-    public VentanaInicio(java.awt.Frame parent, boolean modal) throws FileNotFoundException {
+    public VentanaInicio(java.awt.Frame parent, boolean modal) throws FileNotFoundException, IOException, URISyntaxException {
         super(parent, modal);
         initComponents();
         dico = new Contenedor();

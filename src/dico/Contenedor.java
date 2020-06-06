@@ -1,7 +1,13 @@
 package dico;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -20,20 +26,20 @@ public class Contenedor {
     private static Random rdn;
     private List aleatorios;
 
-    public Contenedor() throws FileNotFoundException {
+    public Contenedor() throws FileNotFoundException, IOException {
         spanish = new HashSet<String>();
         rdn = new Random();
         aleatorios = new ArrayList<Integer>();
-        var fe = new File("src/dico/espaniol.txt");
-
-        var br = new Scanner(fe);
+       
+        InputStream is = Contenedor.class.getClassLoader().getResourceAsStream("dico/espaniol.txt");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        
         String l = null;
-        while (br.hasNextLine()) {
-            l = br.nextLine();
+        while ((l = reader.readLine()) != null) {
             spanish.add(l);
         }
-        br.close();
-
+        reader.close();
+        is.close();
     }
 
     public String[] getSpanish() {

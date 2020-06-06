@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +28,7 @@ public class Ventana extends javax.swing.JFrame {
     private VentanaInicio inicio;
     private String p = null;
 
-    public Ventana() throws FileNotFoundException {
+    public Ventana() throws FileNotFoundException, IOException, URISyntaxException {
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
@@ -36,7 +38,7 @@ public class Ventana extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    public void nuevoJuego() throws FileNotFoundException {
+    public void nuevoJuego() throws FileNotFoundException, IOException, URISyntaxException {
         try {
             inicio = new VentanaInicio(this, true);
             juego = new Juego(inicio.obtenerPalabraParaJuego());
@@ -130,7 +132,11 @@ public class Ventana extends javax.swing.JFrame {
             nuevoJuego();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (IOException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private class Teclado extends javax.swing.JPanel {
@@ -191,7 +197,11 @@ public class Ventana extends javax.swing.JFrame {
                         nuevoJuego();
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    } catch (IOException ex) {
+                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (URISyntaxException ex) {
+                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
                 }
             }
 
