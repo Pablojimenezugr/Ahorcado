@@ -10,8 +10,8 @@ import java.util.HashMap;
  */
 public class Juego {
 
-    private ArrayList<Character> posibles;
-    private ArrayList<Character> falladas;
+    private final ArrayList<Character> posibles;
+    private final ArrayList<Character> falladas;
     private static String palabra;
     private char[] palabra_cifrada;
     private boolean ganado, perdido;
