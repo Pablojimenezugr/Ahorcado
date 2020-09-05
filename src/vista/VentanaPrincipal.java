@@ -1,36 +1,26 @@
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import modelo.Ahorcado;
 
 /**
  *
  * @author pablo
  */
-public class Ventana extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame {
 
     private Ahorcado juego;
     private VentanaInicio inicio;
-    private String p = null;
+    private Teclado teclado;
+    private Imagen imagen;
 
-    public Ventana() throws FileNotFoundException, IOException, URISyntaxException {
+    public VentanaPrincipal() {
         initComponents();
         setTitle("Ahorcado ~ Jj");
         setResizable(false);
@@ -38,7 +28,7 @@ public class Ventana extends javax.swing.JFrame {
         ImageIcon icono = new ImageIcon(getClass().getResource("data/icon.png"));
         setIconImage(icono.getImage());
         setLocationRelativeTo(null);
-        nuevoJuego();
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -48,9 +38,7 @@ public class Ventana extends javax.swing.JFrame {
             juego = new Ahorcado(inicio.obtenerPalabraParaJuego());
             refrescarPalabraLabel();
             this.setVisible(true);
-            teclado1.teclas.forEach((t) -> {
-                t.setBackground(null);
-            });
+            
         } catch (NullPointerException e) {
             System.exit(0);
         }
@@ -76,7 +64,7 @@ public class Ventana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        teclado1 = new Teclado();
+        teclado1 = new org.netbeans.modules.form.InvalidComponent();
         palabra = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         imagen2 = new vista.Imagen();
@@ -135,108 +123,19 @@ public class Ventana extends javax.swing.JFrame {
         try {
             nuevoJuego();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private class Teclado extends javax.swing.JPanel {
-
-        private List<JButton> teclas;
-
-        public Teclado() {
-            initComponents();
-            teclas = new ArrayList<>();
-            List letras = new ArrayList<>(Arrays.asList(
-                    'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G',
-                    'H', 'J', 'K', 'L', 'Ñ', 'ç', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '-', '*'
-            ));
-
-            letras.forEach((l) -> {
-                JButton b = new JButton(l.toString());
-                b.setFont(new Font("Arial", 0, 30));
-                b.addActionListener(new EventoTecladoVirtual());
-                teclas.add(b);
-                add(b);
-            });
-
-            this.setVisible(true);
-            repaint();
-            revalidate();
-        }
-
-        public void resetTeclas() {
-            teclas.forEach((t) -> {
-                t.setBackground(null);
-            });
-        }
-
-        private class EventoTecladoVirtual implements ActionListener {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                boolean correcto = juego.sigPaso(e.getActionCommand().toCharArray()[0]);
-
-                if (correcto) {
-                    JButton pulsado = (JButton) e.getSource();
-                    pulsado.setBackground(Color.GREEN);
-                    pulsado.setOpaque(true);
-                    pulsado.setBorderPainted(false);
-                } else {
-                    JButton pulsado = (JButton) e.getSource();
-                    pulsado.setBackground(Color.RED);
-                    pulsado.setOpaque(true);
-                    pulsado.setBorderPainted(false);
-                    imagen2.ponerImagen(juego.getIndiceFigura());
-                    imagen2.setVisible(true);
-                    imagen2.repaint();
-                }
-                refrescarPalabraLabel();
-                if (juego.finalJuego()) {
-                    Icon icono;
-                    String sms;
-                    if (juego.ganador()) {
-                        sms = "¡HAS GANADO!";
-                        icono = new ImageIcon(getClass().getResource("data/ganador.png"));
-                    } else {
-                        sms = "Has perdido!\nLa palabra era: " + juego.getPalabra();
-                        icono = new ImageIcon(getClass().getResource("data/perdedor.png"));
-                    }
-
-                    JOptionPane.showMessageDialog(new Teclado(), sms, "Fin de la partida", 1, icono);
-                    try {
-                        nuevoJuego();
-                    } catch (FileNotFoundException ex) {
-                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (URISyntaxException ex) {
-                        Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-
-        }
-
-        @SuppressWarnings("unchecked")
-        // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-        private void initComponents() {
-
-            setLayout(new java.awt.GridLayout(3, 10));
-        }// </editor-fold>                        
-
-        // Variables declaration - do not modify                     
-        // End of variables declaration                   
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private vista.Imagen imagen2;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel palabra;
-    private Teclado teclado1;
+    private org.netbeans.modules.form.InvalidComponent teclado1;
     // End of variables declaration//GEN-END:variables
 }
