@@ -18,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import modelo.Juego;
+import modelo.Ahorcado;
 
 /**
  *
@@ -26,7 +26,7 @@ import modelo.Juego;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    private Juego juego;
+    private Ahorcado juego;
     private VentanaInicio inicio;
     private String p = null;
 
@@ -45,7 +45,7 @@ public class Ventana extends javax.swing.JFrame {
     public void nuevoJuego() throws FileNotFoundException, IOException, URISyntaxException {
         try {
             inicio = new VentanaInicio(this, true);
-            juego = new Juego(inicio.obtenerPalabraParaJuego());
+            juego = new Ahorcado(inicio.obtenerPalabraParaJuego());
             refrescarPalabraLabel();
             this.setVisible(true);
             teclado1.teclas.forEach((t) -> {
@@ -56,7 +56,7 @@ public class Ventana extends javax.swing.JFrame {
         }
     }
 
-    public void setJuego(Juego j) {
+    public void setJuego(Ahorcado j) {
         juego = j;
         refrescarPalabraLabel();
     }
