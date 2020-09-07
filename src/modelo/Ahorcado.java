@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author Pablo Jj [trabajosdejj@gmail.com]
  */
-public class Juego {
+public class Ahorcado {
 
     private final ArrayList<Character> posibles;
     private final ArrayList<Character> falladas;
@@ -18,7 +18,7 @@ public class Juego {
     private char[] palabra_cifrada;
     private boolean ganado, perdido;
 
-    public Juego(final String palabra) {
+    public Ahorcado(final String palabra) {
         this.palabra = palabra.toUpperCase();
 
         this.posibles = new ArrayList<>(Arrays.asList(
