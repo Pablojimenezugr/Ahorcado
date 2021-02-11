@@ -110,7 +110,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +158,18 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    public void blockAllKeyboard() {
+        keyboard.blockAllKeyboard();
+    }
+
+    public void unlockKeyboard() {
+        keyboard.resetKeyboard();
+    }
+
+    public void resetPicture() {
+        image.reset();
+    }
 
     
 

@@ -36,10 +36,6 @@ public class Keyboard extends javax.swing.JPanel {
         this.setVisible(true);
     }
 
-    public void resetTeclas() {
-
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,16 +43,23 @@ public class Keyboard extends javax.swing.JPanel {
         setLayout(new java.awt.GridLayout(3, 10));
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * intentar refactorizar esto
+     * @param l
+     * @param evt boton seleccionado
+     */
     void correct(String l, JButton evt) {
         evt.setBackground(Color.GREEN);
         evt.setOpaque(true);
         evt.setBorderPainted(false);
+        evt.setEnabled(false);
     }
 
     void incorrect(String l, JButton evt) {
         evt.setBackground(Color.RED);
         evt.setOpaque(true);
         evt.setBorderPainted(false);
+        evt.setEnabled(false);
     }
 
     void resetKeyboard() {
@@ -64,8 +67,14 @@ public class Keyboard extends javax.swing.JPanel {
             b.setBackground(null);
             b.setOpaque(false);
             b.setBorderPainted(true);
+            b.setEnabled(true);
         });
     }
+
+    void blockAllKeyboard() {
+        keys.forEach((b) -> b.setEnabled(false) );
+    }
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

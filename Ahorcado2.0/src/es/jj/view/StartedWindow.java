@@ -1,5 +1,6 @@
 package es.jj.view;
 
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -40,6 +41,11 @@ public class StartedWindow extends javax.swing.JDialog {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
             }
         });
 
@@ -91,6 +97,13 @@ public class StartedWindow extends javax.swing.JDialog {
         word = jTextField1.getText();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            word = jTextField1.getText();
+            this.dispose();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
 
     public String getWord() {
         return word;
