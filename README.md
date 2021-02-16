@@ -1,12 +1,14 @@
-# Ahorcado
-Tradicional juego del Ahorcado.
+# Hangman
 
-El ahorcado (también llamado colgado) es un juego de adivinanzas de lápiz y papel para dos o más jugadores. 
-Un jugador piensa en una palabra, frase u oración y el otro trata de adivinarla.
 
-En la carpeta **exec's** se puede descargar el .jar y el .exe (no requiere instalación).
-Para ejecutar el jar:
+⚡ Hangman (ahorcado in Spanish) is a paper and pencil guessing game for two or more players. One player thinks of a word, phrase or sentence and the other(s) tries to guess it by suggesting letters within a certain number of guesses. 
+
+You can download the Java jar from the [Releases](https://github.com/pablojj1808/Ahorcado/releases) section and run it.
+
 ``` sh
-java -jar ahorcado_2.0.jar
+$> java -jar Ahorcado.jar
 ```
-Es posible que necesite darle permisos de ejecución.
+🚫 You may need to give it execute permissions.
+
+![](9.55.23.png)
+
