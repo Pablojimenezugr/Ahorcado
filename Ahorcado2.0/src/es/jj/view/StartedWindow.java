@@ -1,17 +1,20 @@
 package es.jj.view;
 
 import java.awt.event.KeyEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
 /**
- *
+ * Shows the first windows, where we write the word.
  * @author Pablo Jj
  */
 public class StartedWindow extends javax.swing.JDialog {
     
     private String word;
 
+    /**
+     * Basic constructor.
+     * @param parent
+     * @param modal
+     */
     public StartedWindow(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -87,17 +90,26 @@ public class StartedWindow extends javax.swing.JDialog {
         jTextField1.setText("");
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    
     private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
         if(jTextField1.getText() == "") {
             jTextField1.setText("introduce la palabra a adivinar");
         }
     }//GEN-LAST:event_jTextField1FocusLost
 
+    /**
+     * Starts the game.
+     * @param evt the event.
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         word = jTextField1.getText();
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    /**
+     * Like ckick on the button.
+     * @param evt 
+     */
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
             word = jTextField1.getText();
@@ -105,6 +117,10 @@ public class StartedWindow extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jTextField1KeyPressed
 
+    /**
+     * 
+     * @return the written word.
+     */
     public String getWord() {
         return word;
     }
