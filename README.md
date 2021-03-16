@@ -13,7 +13,7 @@ $> java -jar Ahorcado.jar
 ![](9.55.23.png)
 
 ## Class Diagram
-![ahorcado](https://user-images.githubusercontent.com/45092820/111284864-d5ec6380-8640-11eb-82d3-92616900ff31.png)
+![final_ahorcado](https://user-images.githubusercontent.com/45092820/111287274-590eb900-8643-11eb-9882-f3c8e07a74ab.png)
 
 ## Tricky Steps
 ### Guessing words
