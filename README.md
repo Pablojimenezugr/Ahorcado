@@ -16,6 +16,11 @@ $> java -jar Ahorcado.jar
 ![ahorcado](https://user-images.githubusercontent.com/45092820/111284864-d5ec6380-8640-11eb-82d3-92616900ff31.png)
 
 ## Tricky Steps
+### Guessing words
 ![Diagrama de Secuencia2](https://user-images.githubusercontent.com/45092820/111284949-ef8dab00-8640-11eb-81d1-9340c3e0aa5c.png)
+
+### Playing (from the controller)
 ![NextStep](https://user-images.githubusercontent.com/45092820/111284955-f1576e80-8640-11eb-8498-9e8a8dab814d.png)
+
+### End of the game
 ![theEnd](https://user-images.githubusercontent.com/45092820/111284964-f2889b80-8640-11eb-9166-0d25b5157dd8.png)
